@@ -12,19 +12,24 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-color:#fff;
 font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
 font-size:2em;
-pointer-events:none;
+pointer-events:auto; /* чтобы ссылка была кликабельной */
 text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+.overlay a{
+color:#fff;
+text-decoration:none;
+}
+.overlay a:hover{
+text-decoration:underline;
 }
 .msg{color:#fff;display:flex;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
 </style>
 </head>
 <body>
 <video id="viewer" autoplay playsinline></video>
-<div class="overlay">Ты настоящий?</div>
-
+<div class="overlay"><a href="https://debunk.eu/?utm_source=chatgpt.com" target="_blank">Are you real?</a></div>
 
 <script>
 (async () => {
