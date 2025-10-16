@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Камера — минималистичный превью</title>
+<style>
+html,body{height:100%;margin:0;background:#000;position:relative}
+video{width:100%;height:100%;object-fit:cover;display:block}
+.overlay{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:#fff;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+font-size:2em;
+pointer-events:none;
+text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+.msg{color:#fff;display:flex;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+</style>
+</head>
+<body>
+<video id="viewer" autoplay playsinline></video>
+<div class="overlay">Ты настоящий?</div>
+
+
+<script>
+(async () => {
+const v = document.getElementById('viewer');
+try {
+const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+v.srcObject = stream;
+} catch (err) {
+document.body.innerHTML = '<div class="msg">Доступ к камере отклонён или камера не найдена.</div>';
+console.error('getUserMedia error:', err);
+}
+})();
+</script>
+</body>
+</html>
